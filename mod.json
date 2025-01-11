@@ -1,0 +1,94 @@
+{
+	"geode": "4.1.2",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "hbg1010.gamemoderandomizer",
+	"name": "gameModeRandomizer",
+	"version": "v1.0.0",
+	"developer": "Hbg1010",
+	"description": "",
+	"settings": {
+		"enabled": {
+			"type": "bool",
+			"name": "Enabled",
+			"default": true
+		},
+
+		"safemode":{
+			"type": "bool",
+			"name": "Safe Mode",
+			"default": true,
+			"enable-if": "enabled"
+		},
+
+		"platModes":{
+			"type": "bool",
+			"name": "Use all platformer modes",
+			"description": "If enabled, wave and Swing will be avaliable icons in platformer mode!",
+			"default": false
+		}, 
+		"title-level-formats":{
+			"type": "title",
+			"name": "Game styles"
+		},
+		"classic":{
+			"type": "bool",
+			"default": true,
+			"name": "Classic Mode"
+		},
+		"platformer":{
+			"type": "bool",
+			"default": true,
+			"name": "Platformer Mode"
+		},
+
+		"title-gameModes": {
+			"type": "title",
+			"name": "Gamemode Selection"
+		},
+		"cube": {
+			"type": "bool",
+			"name": "Cube",
+			"default": true
+		},
+		"ship": {
+			"type": "bool",
+			"name": "Ship",
+			"default": true
+		},
+		"ball": {
+			"type": "bool",
+			"name": "Ball",
+			"default": true
+		},
+		"ufo": {
+			"type": "bool",
+			"name": "Ufo",
+			"default": true
+		},
+		"wave": {
+			"type": "bool",
+			"name": "Wave",
+			"default": true
+		},
+		"robot": {
+			"type": "bool",
+			"name": "Robot",
+			"default": true
+		},
+		"Spider": {
+			"type": "bool",
+			"name": "Spider",
+			"default": true
+		},
+		"Swing": {
+			"type": "bool",
+			"name": "Swing",
+			"default": true
+		}
+	}
+}

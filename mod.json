@@ -17,6 +17,7 @@
 	"offline",
 	"universal"
 	],
+	"repository": "https://github.com/Hbg1010/Portal-Randomizer-GD",
 	"settings": {
 		"enabled": {
 			"type": "bool",

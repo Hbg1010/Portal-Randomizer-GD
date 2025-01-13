@@ -7,22 +7,22 @@
 		"ios": "2.2074"
 	},
 	"id": "hbg1010.gamemoderandomizer",
-	"name": "gameModeRandomizer",
-	"version": "v1.0.0",
+	"name": "Game Mode Randomizer",
+	"version": "v0.1.2",
 	"developer": "Hbg1010",
-	"description": "",
+	"description": "Randomizes player gamemode on portal",
+	"tags": [
+	"cheat",
+	"gameplay",
+	"offline",
+	"universal"
+	],
 	"settings": {
 		"enabled": {
 			"type": "bool",
 			"name": "Enabled",
-			"default": true
-		},
-
-		"safemode":{
-			"type": "bool",
-			"name": "Safe Mode",
 			"default": true,
-			"enable-if": "enabled"
+			"description": "Enables the function of the mod"
 		},
 
 		"platModes":{

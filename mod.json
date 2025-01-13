@@ -8,7 +8,7 @@
 	},
 	"id": "hbg1010.gamemoderandomizer",
 	"name": "Game Mode Randomizer",
-	"version": "v0.1.2",
+	"version": "v0.1.1",
 	"developer": "Hbg1010",
 	"description": "Randomizes player gamemode on portal",
 	"tags": [

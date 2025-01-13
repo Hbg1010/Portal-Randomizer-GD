@@ -41,11 +41,10 @@ class $modify(randomizerGJBaseGameLayer, GJBaseGameLayer) {
         return true;
     }
 
+    // uses a random portal if portal is activated
     bool canBeActivatedByPlayer(PlayerObject* p0, EffectGameObject* p1) {
         if (Mod::get()->getSettingValue<bool>("enabled") && isFormatEnabled(p0->m_isPlatformer) && isGameMode(p1->m_objectType)) {
-            // log::debug("I ran as ID: {}", p1->m_objectID);
-
-            p1->m_objectType = getRandomPortal();
+            p1->m_objectType = getRandomPortal(); // changes the type to now selected type
         }
 
         return GJBaseGameLayer::canBeActivatedByPlayer(p0, p1);

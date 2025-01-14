@@ -1,6 +1,6 @@
 /**
- * 
- * 
+ * Small mod that randomizes gamemode on portal
+ * TODO: MIGRATE ALL OF GJBaseGameLayer TO PLAYER OBJECT
  */
 #include <Geode/Geode.hpp>
 #include <random>
@@ -50,6 +50,8 @@ class $modify(randomizerGJBaseGameLayer, GJBaseGameLayer) {
             if (previousPortal != nullptr) {
                 previousPortal->m_objectType = previousOriginalType;
             }
+
+            previousPortal = nullptr;
         }
 
         void resetPreviousPortal(EffectGameObject* newPortal, GameObjectType newID) {
@@ -70,15 +72,25 @@ class $modify(randomizerGJBaseGameLayer, GJBaseGameLayer) {
 
     // uses a random portal if portal is activated
     bool canBeActivatedByPlayer(PlayerObject* player, EffectGameObject* portal) {
+
         if (Mod::get()->getSettingValue<bool>("enabled") && isFormatEnabled(player->m_isPlatformer) && isGameMode(portal->m_objectType)) {
             m_fields->checkInit(player);
+            bool x = GJBaseGameLayer::canBeActivatedByPlayer(player, portal);
+            // portal->m_objectType = getRandomPortal();
 
-            if (m_fields->randomizedModes.size() > 0) {
-                auto id = portal->m_objectType;
-                // EffectGameObject* id = static_cast<EffectGameObject*>(portal->copy());
-                portal->m_objectType = getRandomPortal(); // changes the type to now selected type
-                m_fields->resetPreviousPortal(portal, id);
-            }             
+            // player->switchedToMode(getRandomPortal());
+            // player->toggleRollMode(false, false);
+            // player->toggleDartMode(true, true);
+            // log::debug("x");
+
+            return x; 
+
+            // if (m_fields->randomizedModes.size() > 0) {
+            //     auto id = portal->m_objectType;
+            //     // EffectGameObject* id = static_cast<EffectGameObject*>(portal->copy());
+            //     portal->m_objectType = getRandomPortal(); // changes the type to now selected type
+            //     m_fields->resetPreviousPortal(portal, id);
+            // }             
         }
 
         return GJBaseGameLayer::canBeActivatedByPlayer(player, portal);
@@ -109,4 +121,65 @@ class $modify(randomizerGJBaseGameLayer, GJBaseGameLayer) {
             || type == GameObjectType::WavePortal || type == GameObjectType::RobotPortal 
             || type == GameObjectType::SpiderPortal || type == GameObjectType::SwingPortal;
     }
+};
+
+#include <Geode/modify/PlayerObject.hpp>
+class $modify(eeee, PlayerObject) {
+    void switchedToMode(GameObjectType p0) {
+        if (auto layer = static_cast<randomizerGJBaseGameLayer*>(m_gameLayer)) {
+            if (layer->m_fields->randomizedModes.size() > 0) {
+                
+                p0 = layer->getRandomPortal();
+                PlayerObject::switchedToMode(p0);
+
+            switch (p0) {
+                        // 0-7 gamemode actions
+                case GameObjectType::CubePortal: {
+                    toggleFlyMode(false, false);
+                    toggleRollMode(false, false);
+                    toggleBirdMode(false, false);
+                    toggleDartMode(false, false);
+                    toggleRobotMode(false, false);
+                    toggleSpiderMode(false, false);
+                    toggleSwingMode(false, false);
+                    break;
+                }
+                case GameObjectType::ShipPortal: {
+                    toggleFlyMode(true, true);
+                    break;
+                }
+
+                case GameObjectType::BallPortal: {
+                    toggleRollMode(true, true);
+                    break;
+                }
+                case GameObjectType::UfoPortal: {
+                    toggleBirdMode(true, true);
+                    break;
+                }
+                case GameObjectType::WavePortal: {
+                    toggleDartMode(true, true);
+                    break;
+                }
+                case GameObjectType::RobotPortal: {
+                    toggleRobotMode(true, true);
+                    break;
+                }
+                case GameObjectType::SpiderPortal: {
+                    toggleSpiderMode(true, true);
+                    break;
+                }
+                case GameObjectType::SwingPortal: {
+                    toggleSwingMode(true, true);
+                    break;
+                }
+                default: {
+                    log::debug("a");
+                }
+                    }
+            }
+        } else {
+            PlayerObject::switchedToMode(p0);
+        }
+    }    
 };
